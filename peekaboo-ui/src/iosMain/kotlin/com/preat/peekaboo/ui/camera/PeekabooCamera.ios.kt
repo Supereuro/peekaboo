@@ -205,6 +205,7 @@ actual fun PeekabooCamera(
             modifier = modifier,
         )
         CompatOverlay(
+            modifier = Modifier.fillMaxSize(),
             state = state,
             captureIcon = captureIcon,
             convertIcon = convertIcon,
@@ -215,12 +216,13 @@ actual fun PeekabooCamera(
 
 @Composable
 private fun CompatOverlay(
+    modifier: Modifier,
     state: PeekabooCameraState,
     captureIcon: @Composable (onClick: () -> Unit) -> Unit,
     convertIcon: @Composable (onClick: () -> Unit) -> Unit,
     progressIndicator: @Composable () -> Unit,
 ) {
-    Box {
+    Box(modifier = modifier) {
         captureIcon(state::capture)
         convertIcon(state::toggleCamera)
         if (state.isCapturing) {
